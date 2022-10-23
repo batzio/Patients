@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start</title>
+</head>
+
+<body>
+    <center>
+        <button id="add" onclick="winOpen()">Add Patient</button>
+        <button id="loadP" onclick="loadPatients()">Load Patients</button>
+        <div id="patientList"></div>
+    </center>
+    <script>
+        displayPatient();
+        function winOpen() {
+            var myWindow = window.open("/patient.html", "", "width=700,height=700");
+        }
+
+        async function displayPatient() {
+            const pac = await axios.get('/patient');
+            // console.log('displayPatient - ' + pac.data);
+            for (let i = 0; i < pac.data.length; i++) {
+                // console.log(i);
+                const div = document.getElementById('patientList');
+                document.body.appendChild(div);
+
+                const btn = document.createElement("button");
+                btn.id = 'btn-' + i;
+                btn.innerText = pac.data[i].name;
+                div.appendChild(btn);
+            }
+        }
+
+        function loadPatients() {
+            const div = document.getElementById('patientList');
+            div.innerHTML = "";
+            displayPatient();
+        }
+
+        // async function 
+
+        // function createSaveBtn() {
+        //     const name = localStorage.getItem('name');
+        //     const id = localStorage.getItem('id');
+        //     console.log(id);
+        //     const btn = document.createElement("button");
+        //     document.body.appendChild(btn);
+        //     btn.className = 'btn-' + id;
+        //     // let btnId = btn.className;
+        //     btn.innerText = name;
+        //     return btn;
+        // }
+
+        // createSaveBtn();
+        // if (document.getElementsByClassName('btn-').clicked == true) {
+        //     get_details(id);
+        // }        document.querySelector('#button-1').addEventListener('click', function(){ console.log('The button was clicked!') });
+
+        //(document.getElementById('btn-').clicked == true)
+
+
+
+        // document.body.addEventListener("click", event => {
+        //     if (event.target.getElementById == "btn-") {
+        //         console.log("Clicked", event.target.textContent);
+        //     }
+        // });
+
+
+
+        // document.querySelector('#btn-').addEventListener('click', async function get_details(id) {
+        //     //     // if(elem == id){
+        //     let pac = await axios.get('/pacient', id);
+        //     console.log('pac - get ' + pac);
+        //     //     document.getElementById("ans").innerHTML = pac;
+        //     //     // }
+        //     //     // g_date = document.getElementById("input").value
+        //     //     // console.log(g_date)
+        //     //     // data = await axios.get('/convert?date=' + g_date)
+        //     //     // // console.log(data.data)
+        //     //     // document.getElementById("ans").innerHTML = data.data
+
+        // });
+
+
+
+
+
+        // if (document.getElementById('btn-').clicked == true) {
+        //     async function get_details(id) {
+        //         //     // if(elem == id){
+        //         let pac = await axios.get('/pacient', id);
+        //         console.log('pac - get ' + pac);
+        //         //     document.getElementById("ans").innerHTML = pac;
+        //         //     // }
+        //         //     // g_date = document.getElementById("input").value
+        //         //     // console.log(g_date)
+        //         //     // data = await axios.get('/convert?date=' + g_date)
+        //         //     // // console.log(data.data)
+        //         //     // document.getElementById("ans").innerHTML = data.data
+        //     }
+        // }
+
+    </script>
+</body>
+
+</html>
