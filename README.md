@@ -7,4 +7,4 @@
 ![image](https://user-images.githubusercontent.com/99605353/197401041-ba68037f-710b-45d5-8eb4-439d77fa9785.png)
 בלחיצה על שם של אחד מחברי הקופה יפתח חלון עם על הנתונים שלו כך גם שניתן לערוך בו שינויים
 ![image](https://user-images.githubusercontent.com/99605353/197647659-8ab99044-4c1a-41f9-872c-ac32aa4c5e78.png)
-הערה: כל הקבצים למעט index.js, package-lock.json, package.json צריכים להיות בתיקיה בשם static.
+הערה: כל הקבצים למעט index.js, package-lock.json, package.json צריכים להיות בתיקיה בשם static. כמובן למעט גם את קובץ ה- README.
