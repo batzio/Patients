@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start</title>
+</head>
+
+<body>
+    <center>
+        <button id="add" onclick="winOpen()">Add Patient</button>
+        <button id="loadP" onclick="loadPatients()">Load Patients</button>
+        <div id="patientList"></div>
+    </center>
+    <script>
+        displayPatient();
+
+        function winOpen() {
+            localStorage.setItem("elemId", "-1");
+            var myWindow = window.open("/patient.html", "", "width=800,height=900");
+        }
+
+        async function displayPatient() {
+            const pac = await axios.get('/patients');
+            for (let i = 0; i < pac.data.length; i++) {
+                const div = document.getElementById('patientList');
+                document.body.appendChild(div);
+
+                const btn = document.createElement("button");
+                btn.id = i;
+                btn.innerText = pac.data[i].name;
+                btn.addEventListener("click", function () { editPatient(i) }, false);
+                div.appendChild(btn);
+            }
+        }
+
+        function loadPatients() {
+            const div = document.getElementById('patientList');
+            div.innerHTML = "";
+            displayPatient();
+        }
+
+
+        async function editPatient(elemId) {
+            localStorage.setItem("elemId", elemId);
+            console.log("id:", elemId);
+            var myWindow = window.open("/patient.html", "", "width=800,height=900");
+        }
+    </script>
+</body>
+
+</html>
